@@ -1,0 +1,3 @@
+hub_whitelist: ['SBPL Hub']
+disable_zeroconf: false
+

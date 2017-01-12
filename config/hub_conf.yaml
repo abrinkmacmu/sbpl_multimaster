@@ -1,0 +1,4 @@
+hub_uri: http://dagobah:6380
+hub_whitelist: ['SBPL Hub']
+disable_zeroconf: true
+

@@ -1,0 +1,22 @@
+watch_loop_period: 1
+firewall: false
+name: yavin_gateway
+network_interface: eth0
+
+default_advertisements: 
+   - name: /dagobah_talker
+     node: None
+     type: publisher
+
+default_pulls:
+   - gateway: tatooine_gateway
+     rule:  
+       name: /tatooine_talker
+       node: None
+       type: publisher
+       
+   - gateway: dagobah_gateway
+     rule:  
+       name: /dagobah_talker
+       node: None
+       type: publisher

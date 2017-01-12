@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <name>sbpl_multimaster</name>
+  <version>0.0.0</version>
+  <description>SBPL Rocon configuration for Groovy/Indigo multimaster configurations</description>
+
+  <maintainer email="brinkap@gmail.com">Alex Brinkman</maintainer>
+
+  <license>GNU GPL</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rocon_gateway</build_depend>
+  <build_depend>rocon_hub</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  
+  <run_depend>rocon_gateway</run_depend>
+  <run_depend>rocon_hub</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+</package>

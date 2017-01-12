@@ -1,0 +1,24 @@
+<launch>
+	<arg name="zeroconf" default="false" />
+	<arg name="computer_name" default="dagobah" />
+
+	<node if="$(arg zeroconf)" name="zeroconf" pkg="zeroconf_avahi" type="zeroconf" />
+
+	<!-- Startup the Rocon Gateway, reading in the configuration for the particular computer_name -->
+
+	<node name="gateway" pkg="rocon_gateway" type="gateway.py">
+		<rosparam if="$(arg zeroconf)" command="load" file="$(find sbpl_multimaster)/config/hub_zeroconf.yaml"/>
+		<rosparam unless="$(arg zeroconf)" command="load" file="$(find sbpl_multimaster)/config/hub_conf.yaml"/>
+		<rosparam command="load" file="$(find sbpl_multimaster)/config/$(arg computer_name)_config.yaml"/>
+		<rosparam command="load" file="$(find sbpl_multimaster)/config/blacklist.yaml"/>
+	</node>
+
+
+	<!-- this starts a generic 'hello world ###' talker to help debug network settings -->
+
+	<node pkg="roscpp_tutorials" type="talker" name="$(arg computer_name)_talker">
+		<remap from="chatter" to="$(arg computer_name)_talker"/>
+	</node>
+
+</launch>
+

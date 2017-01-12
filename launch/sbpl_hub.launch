@@ -1,0 +1,10 @@
+<launch>
+	<arg name="zeroconf" default="false" />
+
+	<include file="$(find rocon_hub)/launch/hub.launch">
+		<arg name="hub_name" value="SBPL Hub" />
+		<arg name="zeroconf" value="$(arg zeroconf)"/>
+
+	</include>
+
+</launch>
