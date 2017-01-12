@@ -4,7 +4,7 @@ name: yavin_gateway
 network_interface: eth0
 
 default_advertisements: 
-   - name: /dagobah_talker
+   - name: /yavin_talker
      node: None
      type: publisher
 
