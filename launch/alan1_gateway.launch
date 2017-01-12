@@ -1,0 +1,14 @@
+<launch>
+	<arg name="zeroconf" default="false" />
+	<arg name="computer_name" default="alan1" />
+
+	<!-- Only run the hub on machine Dagobah -->
+	<!-- The hub on Dagobah only should you run - Yoda -->
+	<!-- <include file="$(find sbpl_multimaster)/launch/sbpl_hub.launch" /> -->
+
+	<include file="$(find sbpl_multimaster)/launch/generic_gateway.launch">
+		<arg name="zeroconf" value="$(arg zeroconf)" />
+		<arg name="computer_name" value="$(arg computer_name)" />
+	</include>
+
+</launch>
