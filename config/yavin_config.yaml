@@ -20,3 +20,9 @@ default_pulls:
        name: /dagobah_talker
        node: None
        type: publisher
+
+   - gateway: alan1_gateway
+     rule:  
+       name: /alan1_talker
+       node: None
+       type: publisher
