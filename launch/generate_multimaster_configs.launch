@@ -1,0 +1,5 @@
+<launch>
+	<rosparam command="load" file="$(find sbpl_multimaster)/config/gateway_topics.yaml"/>
+
+	<node pkg="sbpl_multimaster" name="generate_multimaster_configs" type="generate_multimaster_configs.py" output="screen"/>
+</launch>
