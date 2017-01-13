@@ -9,7 +9,7 @@
 	<node name="gateway" pkg="rocon_gateway" type="gateway.py">
 		<rosparam if="$(arg zeroconf)" command="load" file="$(find sbpl_multimaster)/config/hub_zeroconf.yaml"/>
 		<rosparam unless="$(arg zeroconf)" command="load" file="$(find sbpl_multimaster)/config/hub_conf.yaml"/>
-		<rosparam command="load" file="$(find sbpl_multimaster)/config/$(arg computer_name)_config.yaml"/>
+		<rosparam command="load" file="$(find sbpl_multimaster)/config/generated/$(arg computer_name)_config.yaml"/>
 		<rosparam command="load" file="$(find sbpl_multimaster)/config/blacklist.yaml"/>
 	</node>
 
