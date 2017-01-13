@@ -6,6 +6,9 @@ default_advertisements:
    - name: /alan1_talker
      node: None
      type: publisher
+   - name: /narrow_stereo/left/image_color
+     node: None
+     type: publisher
 
 default_pulls:
    - gateway: dagobah_gateway

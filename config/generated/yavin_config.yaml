@@ -26,3 +26,9 @@ default_pulls:
        node: None
        type: publisher
 
+   - gateway: alan1_gateway
+     rule:
+       name: /narrow_stereo/left/image_color
+       node: None
+       type: publisher
+
