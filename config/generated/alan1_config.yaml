@@ -1,0 +1,28 @@
+watch_loop_period: 1
+firewall: false
+name: alan1_gateway
+network_interface: lan0
+default_advertisements:
+   - name: /alan1_talker
+     node: None
+     type: publisher
+
+default_pulls:
+   - gateway: dagobah_gateway
+     rule:
+       name: /dagobah_talker
+       node: None
+       type: publisher
+
+   - gateway: tatooine_gateway
+     rule:
+       name: /tatooine_talker
+       node: None
+       type: publisher
+
+   - gateway: yavin_gateway
+     rule:
+       name: /yavin_talker
+       node: None
+       type: publisher
+

@@ -1,0 +1,17 @@
+generator_gateway_list: 
+ - dagobah
+ - tatooine
+ - alan1
+ - yavin
+
+generator_dagobah_publishers:
+  - dagobah_talker
+
+generator_tatooine_publishers:
+  - tatooine_talker
+
+generator_alan1_publishers:
+  - alan1_talker
+
+generator_yavin_publishers:
+  - yavin_talker
