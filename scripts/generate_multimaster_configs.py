@@ -14,6 +14,7 @@ if not rospy.has_param('generator_gateway_list'):
 gateway_list = rospy.get_param('generator_gateway_list')
 
 for gateway in gateway_list:
+	rospy.loginfo("Creating configuration for " + gateway)
 	file = open(package_path + "/config/generated/" + gateway+"_config.yaml", 'w')
 	file.write("watch_loop_period: 1\n")
 	file.write("firewall: false\n")
@@ -45,3 +46,5 @@ for gateway in gateway_list:
 				file.write("       type: publisher\n\n")
 
 	file.close()
+
+rospy.loginfo('All config files successfully generated!')
