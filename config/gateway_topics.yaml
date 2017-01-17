@@ -12,7 +12,7 @@ generator_tatooine_publishers:
 
 generator_alan1_publishers:
   - alan1_talker
-  - narrow_stereo/left/image_color
+  - pr2/wide_stereo/right/image_raw
 
 generator_yavin_publishers:
   - yavin_talker

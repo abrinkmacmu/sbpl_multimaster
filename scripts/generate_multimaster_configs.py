@@ -32,6 +32,7 @@ for gateway in gateway_list:
 		file.write("   - name: /" + publisher_topic +"\n")
 		file.write("     node: None\n")
 		file.write("     type: publisher\n")
+		rospy.loginfo("     topic: " + publisher_topic)
 
 	# not create the default pulls for other machines
 	file.write("\ndefault_pulls:\n")

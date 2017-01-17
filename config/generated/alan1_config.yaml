@@ -6,7 +6,7 @@ default_advertisements:
    - name: /alan1_talker
      node: None
      type: publisher
-   - name: /narrow_stereo/left/image_color
+   - name: /pr2/wide_stereo/right/image_raw
      node: None
      type: publisher
 
