@@ -32,3 +32,21 @@ default_pulls:
        node: None
        type: publisher
 
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/joint_states
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/base_scan
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/tilt_scan
+       node: None
+       type: publisher
+
