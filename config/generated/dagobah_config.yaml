@@ -6,6 +6,9 @@ default_advertisements:
    - name: /dagobah_talker
      node: None
      type: publisher
+   - name: /pr2/torso_controller/position_joint_action
+     node: None
+     type: publisher
 
 default_pulls:
    - gateway: tatooine_gateway
@@ -41,12 +44,6 @@ default_pulls:
    - gateway: alan1_gateway
      rule:
        name: /pr2/tilt_scan
-       node: None
-       type: publisher
-
-   - gateway: alan1_gateway
-     rule:
-       name: /pr2/torso_controller/position_joint_action
        node: None
        type: publisher
 

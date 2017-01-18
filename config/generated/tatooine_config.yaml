@@ -14,6 +14,12 @@ default_pulls:
        node: None
        type: publisher
 
+   - gateway: dagobah_gateway
+     rule:
+       name: /pr2/torso_controller/position_joint_action
+       node: None
+       type: publisher
+
    - gateway: alan1_gateway
      rule:
        name: /alan1_talker
@@ -41,12 +47,6 @@ default_pulls:
    - gateway: alan1_gateway
      rule:
        name: /pr2/tilt_scan
-       node: None
-       type: publisher
-
-   - gateway: alan1_gateway
-     rule:
-       name: /pr2/torso_controller/position_joint_action
        node: None
        type: publisher
 
