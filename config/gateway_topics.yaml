@@ -6,7 +6,8 @@ generator_gateway_list:
 
 generator_dagobah_publishers:
   - dagobah_talker
-
+  - pr2/torso_controller/position_joint_action
+  
 generator_tatooine_publishers:
   - tatooine_talker
 
@@ -16,7 +17,6 @@ generator_alan1_publishers:
   - pr2/joint_states
   - pr2/base_scan
   - pr2/tilt_scan
-  - pr2/torso_controller/position_joint_action/goal
 
 generator_yavin_publishers:
   - yavin_talker

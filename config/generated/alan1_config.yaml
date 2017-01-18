@@ -18,6 +18,9 @@ default_advertisements:
    - name: /pr2/tilt_scan
      node: None
      type: publisher
+   - name: /pr2/torso_controller/position_joint_action
+     node: None
+     type: publisher
 
 default_pulls:
    - gateway: dagobah_gateway
