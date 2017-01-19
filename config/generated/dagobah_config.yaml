@@ -3,3 +3,74 @@ firewall: false
 name: dagobah_gateway
 network_interface: eth0
 default_advertisements:
+   - name: /pr2/torso_controller/position_joint_action/goal
+     node: None
+     type: publisher
+   - name: /pr2/torso_controller/position_joint_action/cancel
+     node: None
+     type: publisher
+   - name: /dagobah_talker
+     node: None
+     type: publisher
+
+default_pulls:
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/torso_controller/position_joint_action/status
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/torso_controller/position_joint_action/result
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/torso_controller/position_joint_action/feedback
+       node: None
+       type: publisher
+
+   - gateway: tatooine_gateway
+     rule:
+       name: /roman/tatooine_talker
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/alan1_talker
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/wide_stereo/right/image_raw
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/joint_states
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/base_scan
+       node: None
+       type: publisher
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2/tilt_scan
+       node: None
+       type: publisher
+
+   - gateway: yavin_gateway
+     rule:
+       name: /yavin_talker
+       node: None
+       type: publisher
+

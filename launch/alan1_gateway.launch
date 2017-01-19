@@ -11,4 +11,6 @@
 		<arg name="computer_name" value="$(arg computer_name)" />
 	</include>
 
+	<include file="$(find sbpl_multimaster)/launch/generated/alan1_rempappings.launch"/>
+
 </launch>

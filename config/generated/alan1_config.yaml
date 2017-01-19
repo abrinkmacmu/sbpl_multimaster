@@ -3,7 +3,16 @@ firewall: false
 name: alan1_gateway
 network_interface: lan0
 default_advertisements:
-   - name: /alan1_talker
+   - name: /pr2/torso_controller/position_joint_action/status
+     node: None
+     type: publisher
+   - name: /pr2/torso_controller/position_joint_action/result
+     node: None
+     type: publisher
+   - name: /pr2/torso_controller/position_joint_action/feedback
+     node: None
+     type: publisher
+   - name: /pr2/alan1_talker
      node: None
      type: publisher
    - name: /pr2/wide_stereo/right/image_raw
@@ -22,19 +31,25 @@ default_advertisements:
 default_pulls:
    - gateway: dagobah_gateway
      rule:
-       name: /dagobah_talker
+       name: /pr2/torso_controller/position_joint_action/goal
        node: None
        type: publisher
 
    - gateway: dagobah_gateway
      rule:
-       name: /pr2/torso_controller/position_joint_action
+       name: /pr2/torso_controller/position_joint_action/cancel
+       node: None
+       type: publisher
+
+   - gateway: dagobah_gateway
+     rule:
+       name: /dagobah_talker
        node: None
        type: publisher
 
    - gateway: tatooine_gateway
      rule:
-       name: /tatooine_talker
+       name: /roman/tatooine_talker
        node: None
        type: publisher
 

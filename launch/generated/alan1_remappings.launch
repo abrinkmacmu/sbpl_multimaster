@@ -1,33 +1,22 @@
 <launch>
+  <node name="torso_controller_position_joint_action_status_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/status pr2/torso_controller/position_joint_action/status/>
 
-	<arg name="robot_prefix" default="pr2/"/>
+  <node name="torso_controller_position_joint_action_result_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/result pr2/torso_controller/position_joint_action/result/>
 
-	<arg name="topic1" value="wide_stereo/right/image_raw"/>
-	<node name="relay_wide_stereo" pkg="topic_tools" type="relay"  args="$(arg topic1) $(arg robot_prefix)$(arg topic1)">
-	  <param name="lazy" value="true"/>
-	</node>
+  <node name="torso_controller_position_joint_action_feedback_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/feedback pr2/torso_controller/position_joint_action/feedback/>
 
-	<arg name="topic2" value="joint_states"/>
-	<node name="relay_joint_states" pkg="topic_tools" type="relay"  args="$(arg topic2) $(arg robot_prefix)$(arg topic2)">
-	  <param name="lazy" value="true"/>
-	</node>
+  <node name="alan1_talker_relay_node" pkg="topic_tools" type="relay" args="alan1_talker pr2/alan1_talker/>
 
-	<arg name="topic3" value="base_scan"/>
-	<node name="relay_base_scan" pkg="topic_tools" type="relay"  args="$(arg topic3) $(arg robot_prefix)$(arg topic3)">
-	  <param name="lazy" value="true"/>
-	</node>
+  <node name="wide_stereo_right_image_raw_relay_node" pkg="topic_tools" type="relay" args="wide_stereo/right/image_raw pr2/wide_stereo/right/image_raw/>
 
-	<arg name="topic4" value="tilt_scan"/>
-	<node name="relay_tilt_scan" pkg="topic_tools" type="relay"  args="$(arg topic4) $(arg robot_prefix)$(arg topic4)">
-	  <param name="lazy" value="true"/>
-	</node>
+  <node name="joint_states_relay_node" pkg="topic_tools" type="relay" args="joint_states pr2/joint_states/>
 
-  <!-- Subscribers -->
+  <node name="base_scan_relay_node" pkg="topic_tools" type="relay" args="base_scan pr2/base_scan/>
 
-	<arg name="topic5" value="torso_controller/position_joint_action/goal"/>
-  <node name="relay_torso_goal" pkg="topic_tools" type="relay"  args="$(arg robot_prefix)$(arg topic5) $(arg topic5)" output="screen">
-	  <param name="lazy" value="true"/>
-	</node>
+  <node name="tilt_scan_relay_node" pkg="topic_tools" type="relay" args="tilt_scan pr2/tilt_scan/>
 
+  <node name="torso_controller_position_joint_action_goal_relay_node" pkg="topic_tools" type="relay" args="pr2/torso_controller/position_joint_action/goal torso_controller/position_joint_action/goal/>
+
+  <node name="torso_controller_position_joint_action_cancel_relay_node" pkg="topic_tools" type="relay" args="pr2/torso_controller/position_joint_action/cancel torso_controller/position_joint_action/cancel/>
 
 </launch>
