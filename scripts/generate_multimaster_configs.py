@@ -76,7 +76,9 @@ class MultimasterConfigGenerator:
 			##topic_name = topic_unprefixed[0:topic_unprefixed.find('/')] #not unique enough
 			topic_name = topic_unprefixed.replace('/','_')
 			file.write("  <node name=\""+topic_name+"_relay_node\" pkg=\"topic_tools\" type=\"relay\" ")
-			file.write("args=\""+topic_unprefixed+" "+topic +"\" />\n\n")
+			file.write("args=\""+topic_unprefixed+" "+topic +"\" />\n")
+			file.write("    <param name=\"lazy\" value=\"true\"/>\n")
+			file.write("  </node>\n\n")
 
 
 	def writeSubscribedRemaps(self, file, gateway, robot_prefix):
@@ -86,7 +88,9 @@ class MultimasterConfigGenerator:
 				##topic_name = topic_unprefixed[0:topic_unprefixed.find('/')] #not unique enough
 				topic_name = topic_unprefixed.replace('/','_')
 				file.write("  <node name=\""+topic_name+"_relay_node\" pkg=\"topic_tools\" type=\"relay\" ")
-				file.write("args=\""+topic+" "+topic_unprefixed +"\" />\n\n")
+				file.write("args=\""+topic+" "+topic_unprefixed +"\" >\n")
+				file.write("    <param name=\"lazy\" value=\"true\"/>\n")
+				file.write("  </node>\n\n")
 
 	def run(self):
 		# first generate the list of default advertisements from actions
