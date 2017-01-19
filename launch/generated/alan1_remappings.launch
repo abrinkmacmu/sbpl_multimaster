@@ -1,33 +1,33 @@
 <launch>
-  <node name="torso_controller_position_joint_action_status_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/status pr2/torso_controller/position_joint_action/status" />
+  <node name="torso_controller_position_joint_action_status_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/status pr2/torso_controller/position_joint_action/status" >
     <param name="lazy" value="true"/>
   </node>
 
-  <node name="torso_controller_position_joint_action_result_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/result pr2/torso_controller/position_joint_action/result" />
+  <node name="torso_controller_position_joint_action_result_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/result pr2/torso_controller/position_joint_action/result" >
     <param name="lazy" value="true"/>
   </node>
 
-  <node name="torso_controller_position_joint_action_feedback_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/feedback pr2/torso_controller/position_joint_action/feedback" />
+  <node name="torso_controller_position_joint_action_feedback_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/feedback pr2/torso_controller/position_joint_action/feedback" >
     <param name="lazy" value="true"/>
   </node>
 
-  <node name="alan1_talker_relay_node" pkg="topic_tools" type="relay" args="alan1_talker pr2/alan1_talker" />
+  <node name="alan1_talker_relay_node" pkg="topic_tools" type="relay" args="alan1_talker pr2/alan1_talker" >
     <param name="lazy" value="true"/>
   </node>
 
-  <node name="wide_stereo_right_image_raw_relay_node" pkg="topic_tools" type="relay" args="wide_stereo/right/image_raw pr2/wide_stereo/right/image_raw" />
+  <node name="wide_stereo_right_image_raw_relay_node" pkg="topic_tools" type="relay" args="wide_stereo/right/image_raw pr2/wide_stereo/right/image_raw" >
     <param name="lazy" value="true"/>
   </node>
 
-  <node name="joint_states_relay_node" pkg="topic_tools" type="relay" args="joint_states pr2/joint_states" />
+  <node name="joint_states_relay_node" pkg="topic_tools" type="relay" args="joint_states pr2/joint_states" >
     <param name="lazy" value="true"/>
   </node>
 
-  <node name="base_scan_relay_node" pkg="topic_tools" type="relay" args="base_scan pr2/base_scan" />
+  <node name="base_scan_relay_node" pkg="topic_tools" type="relay" args="base_scan pr2/base_scan" >
     <param name="lazy" value="true"/>
   </node>
 
-  <node name="tilt_scan_relay_node" pkg="topic_tools" type="relay" args="tilt_scan pr2/tilt_scan" />
+  <node name="tilt_scan_relay_node" pkg="topic_tools" type="relay" args="tilt_scan pr2/tilt_scan" >
     <param name="lazy" value="true"/>
   </node>
 
