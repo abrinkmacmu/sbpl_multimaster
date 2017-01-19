@@ -1,22 +1,49 @@
+
+# the gatway list should be the machine name
+# the same gatway name should be reflected in your /etc/hosts
 generator_gateway_list: 
  - dagobah
  - tatooine
  - alan1
  - yavin
 
+# the demonstration commander machine
+generator_commander: dagobah
+
+# pr2 machine name
+generator_pr2: alan1
+
+# roman machine name
+generator_roman: tatooine # TODO set for roman machine
+
+#list out all action clients the commander needs 
+#  5 topics will be generated per the actionlib protocol
+#  commander published topics: 'goal', 'cancel'
+#  robot published topics: 'status', 'result', 'feedback'
+#  
+#  These topics will programmatically be added to the generated configs
+#  and robot remapping launches (using topic_tools/relay) will also be generated 
+#  to correctly assign the robot prefix to conform to the sbpl multimaster convention
+generator_commander_action_clients:
+  pr2:
+    - torso_controller/position_joint_action
+
+
+
+#list out all published topics you want shared on the network
+# TODO generate the remapping launch files from the publisher list
+generator_alan1_publishers:
+  - alan1_talker
+  - wide_stereo/right/image_raw
+  - joint_states
+  - base_scan
+  - tilt_scan
+
 generator_dagobah_publishers:
   - dagobah_talker
-  - pr2/torso_controller/position_joint_action
   
 generator_tatooine_publishers:
   - tatooine_talker
-
-generator_alan1_publishers:
-  - alan1_talker
-  - pr2/wide_stereo/right/image_raw
-  - pr2/joint_states
-  - pr2/base_scan
-  - pr2/tilt_scan
 
 generator_yavin_publishers:
   - yavin_talker
