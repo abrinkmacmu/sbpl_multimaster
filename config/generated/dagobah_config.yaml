@@ -15,8 +15,23 @@ default_advertisements:
    - name: /torso_controller/position_joint_action
      node: None
      type: action_client
+   - name: fibonacci
+     node: None
+     type: action_client
 
 default_pulls:
+   - gateway: tatooine_gateway
+     rule:
+       name: fibonacci
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /torso_controller/position_joint_action
+       node: None
+       type: action_server
+
    - gateway: alan1_gateway
      rule:
        name: /pr2/torso_controller/position_joint_action/status

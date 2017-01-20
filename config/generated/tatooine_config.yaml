@@ -6,8 +6,17 @@ default_advertisements:
    - name: /roman/tatooine_talker
      node: None
      type: publisher
+   - name: fibonacci
+     node: None
+     type: action_server
 
 default_pulls:
+   - gateway: dagobah_gateway
+     rule:
+       name: /fibonacci
+       node: None
+       type: action_client
+
    - gateway: dagobah_gateway
      rule:
        name: /dagobah_talker
