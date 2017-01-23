@@ -3,59 +3,53 @@ firewall: false
 name: tatooine_gateway
 network_interface: eth0
 default_advertisements:
+   - name: /roman/tf_lookup_server
+     node: None
+     type: server
    - name: /roman/tatooine_talker
      node: None
      type: publisher
-   - name: fibonacci
-     node: None
-     type: action_server
 
 default_pulls:
    - gateway: dagobah_gateway
      rule:
-       name: /fibonacci
-       node: None
-       type: action_client
-
-   - gateway: dagobah_gateway
-     rule:
        name: /dagobah_talker
        node: None
-       type: publisher
+       type: subscriber
 
    - gateway: alan1_gateway
      rule:
        name: /pr2/alan1_talker
        node: None
-       type: publisher
+       type: subscriber
 
    - gateway: alan1_gateway
      rule:
        name: /pr2/wide_stereo/right/image_raw
        node: None
-       type: publisher
+       type: subscriber
 
    - gateway: alan1_gateway
      rule:
        name: /pr2/joint_states
        node: None
-       type: publisher
+       type: subscriber
 
    - gateway: alan1_gateway
      rule:
        name: /pr2/base_scan
        node: None
-       type: publisher
+       type: subscriber
 
    - gateway: alan1_gateway
      rule:
        name: /pr2/tilt_scan
        node: None
-       type: publisher
+       type: subscriber
 
    - gateway: yavin_gateway
      rule:
        name: /yavin_talker
        node: None
-       type: publisher
+       type: subscriber
 

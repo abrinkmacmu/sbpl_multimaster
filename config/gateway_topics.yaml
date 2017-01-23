@@ -29,6 +29,15 @@ generator_commander_action_clients:
     - torso_controller/position_joint_action
 
 
+#list out the servers the commander needs
+#  This will add the server to both the robot and commander configs
+generator_commander_servers:
+  pr2:
+    - tf_lookup_server
+  roman:
+    - tf_lookup_server
+
+
 
 #list out all published topics you want shared on the network
 # TODO generate the remapping launch files from the publisher list

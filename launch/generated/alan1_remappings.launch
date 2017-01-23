@@ -5,6 +5,8 @@
 
   <node name="torso_controller_position_joint_action_feedback_relay_node" pkg="topic_tools" type="relay" args="torso_controller/position_joint_action/feedback pr2/torso_controller/position_joint_action/feedback/>
 
+  <node name="tf_lookup_server_relay_node" pkg="topic_tools" type="relay" args="tf_lookup_server pr2/tf_lookup_server/>
+
   <node name="alan1_talker_relay_node" pkg="topic_tools" type="relay" args="alan1_talker pr2/alan1_talker/>
 
   <node name="wide_stereo_right_image_raw_relay_node" pkg="topic_tools" type="relay" args="wide_stereo/right/image_raw pr2/wide_stereo/right/image_raw/>

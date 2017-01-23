@@ -3,7 +3,12 @@ import roslib; roslib.load_manifest('sbpl_multimaster')
 import rospy
 import rospkg
 from collections import defaultdict
+from collections import namedtuple
 import IPython
+
+AdStruct = namedtuple("AdStruct", "topic topic_type")
+PullStruct = namedtuple("PullStruct", "topic topic_type pull_gateway")
+
 
 class MultimasterConfigGenerator:
 	def __init__(self):
@@ -30,16 +35,15 @@ class MultimasterConfigGenerator:
 		# **new robots should go here**
 
 		self.actions = rospy.get_param('generator_commander_action_clients')
+		self.servers = rospy.get_param('generator_commander_servers')
 		#IPython.embed()
 
-		self.defaultAdvertisements = defaultdict(list) # K-gateway, V-list of topics 
-		self.defaultPullsTopics = defaultdict(list) # K-gateway, V-list of topics
-		self.defaultPullsGateway = defaultdict(list) # K-gateway, V-list of 'other_gateway'
+		self.defaultAdvertisements = defaultdict(list) # K-gateway, V-list of namedtuple-AdStruct
+		self.defaultPulls = defaultdict(list) # K-gateway, V-list of namedtuple-PullStruct
 
 		for gw in self.gateway_list:
 			self.defaultAdvertisements[gw] = []
-			self.defaultPullsTopics[gw] = []
-			self.defaultPullsGateway[gw] = []
+			self.defaultPulls[gw] = []
 
 
 	def writeConfigHeader(self, file, gateway):
@@ -53,25 +57,24 @@ class MultimasterConfigGenerator:
 
 	def writeDefaultAdvertisements(self, file, gateway):
 		file.write("default_advertisements:\n")
-		for topic in self.defaultAdvertisements[gateway]:
-			file.write("   - name: /" + topic +"\n")
+		for adstruct in self.defaultAdvertisements[gateway]:
+			file.write("   - name: /" + adstruct.topic +"\n")
 			file.write("     node: None\n")
-			file.write("     type: publisher\n")
-			rospy.loginfo("     topic: " + topic)
+			file.write("     type: "+ adstruct.topic_type+"\n")
+			rospy.loginfo("     topic: " + adstruct.topic)
 
 	def writeDefaultPulls(self, file, gateway):
 		file.write("\ndefault_pulls:\n")
-		for i in range(0, len(self.defaultPullsTopics[gateway])):
-			topic = self.defaultPullsTopics[gateway][i]
-			other_gateway = self.defaultPullsGateway[gateway][i]
-			file.write("   - gateway: "+other_gateway+"_gateway\n")
+		for pullstruct in self.defaultPulls[gateway]:
+			file.write("   - gateway: "+pullstruct.pull_gateway+"_gateway\n")
 			file.write("     rule:\n")
-			file.write("       name: /"+topic+"\n")
+			file.write("       name: /"+pullstruct.topic+"\n")
 			file.write("       node: None\n")
-			file.write("       type: publisher\n\n")
+			file.write("       type: "+pullstruct.topic_type+"\n\n")
 
 	def writePublishedRemaps(self, file, gateway):
-		for topic in self.defaultAdvertisements[gateway]:
+		for adstruct in self.defaultAdvertisements[gateway]:
+			topic = adstruct.topic
 			topic_unprefixed = topic[ topic.find('/')+1: len(topic)]
 			##topic_name = topic_unprefixed[0:topic_unprefixed.find('/')] #not unique enough
 			topic_name = topic_unprefixed.replace('/','_')
@@ -80,13 +83,16 @@ class MultimasterConfigGenerator:
 
 
 	def writeSubscribedRemaps(self, file, gateway, robot_prefix):
-		for topic in self.defaultPullsTopics[gateway]:
+		for pullstruct in self.defaultPulls[gateway]:
+			topic = pullstruct.topic
 			if(topic.find(robot_prefix) > -1 ):
 				topic_unprefixed = topic[ topic.find('/')+1: len(topic)]
 				##topic_name = topic_unprefixed[0:topic_unprefixed.find('/')] #not unique enough
 				topic_name = topic_unprefixed.replace('/','_')
 				file.write("  <node name=\""+topic_name+"_relay_node\" pkg=\"topic_tools\" type=\"relay\" ")
 				file.write("args=\""+topic+" "+topic_unprefixed +"/>\n\n")
+
+
 
 	def run(self):
 		# first generate the list of default advertisements from actions
@@ -103,26 +109,34 @@ class MultimasterConfigGenerator:
 				## Add new robots here
 				
 
-				self.defaultAdvertisements[self.pr2_machine].append(robot+"/" + action_root + "/status")
-				self.defaultAdvertisements[self.pr2_machine].append(robot+"/" + action_root + "/result")
-				self.defaultAdvertisements[self.pr2_machine].append(robot+"/" + action_root + "/feedback")
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + action_root + "/status"  , "publisher"))
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + action_root + "/result"  , "publisher"))
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + action_root + "/feedback", "publisher"))
 
-				self.defaultPullsTopics[self.pr2_machine].append(robot+"/" + action_root + "/goal")
-				self.defaultPullsGateway[self.pr2_machine].append(self.commander_machine)
-				self.defaultPullsTopics[self.pr2_machine].append(robot+"/" + action_root + "/cancel")
-				self.defaultPullsGateway[self.pr2_machine].append(self.commander_machine)
+				self.defaultPulls[robot_machine].append(PullStruct(robot+"/" + action_root + "/goal"  , "subscriber", self.commander_machine))
+				self.defaultPulls[robot_machine].append(PullStruct(robot+"/" + action_root + "/cancel", "subscriber", self.commander_machine))
 
-				self.defaultAdvertisements[self.commander_machine].append(robot+"/" + action_root + "/goal")
-				self.defaultAdvertisements[self.commander_machine].append(robot+"/" + action_root + "/cancel")
+				self.defaultAdvertisements[self.commander_machine].append(AdStruct(robot+"/" + action_root + "/goal"  , "publisher"))
+				self.defaultAdvertisements[self.commander_machine].append(AdStruct(robot+"/" + action_root + "/cancel", "publisher"))
 
-				self.defaultPullsTopics[self.commander_machine].append(robot+"/" + action_root + "/status")
-				self.defaultPullsGateway[self.commander_machine].append(self.pr2_machine)
-				self.defaultPullsTopics[self.commander_machine].append(robot+"/" + action_root + "/result")
-				self.defaultPullsGateway[self.commander_machine].append(self.pr2_machine)
-				self.defaultPullsTopics[self.commander_machine].append(robot+"/" + action_root + "/feedback")
-				self.defaultPullsGateway[self.commander_machine].append(self.pr2_machine)
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + action_root + "/status"  , "subscriber", robot_machine))
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + action_root + "/result"  , "subscriber", robot_machine))
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + action_root + "/feedback", "subscriber", robot_machine))
 
 
+		# next get the servers
+		for robot in self.servers.keys():
+			for server_root in self.servers[robot]:
+				robot_machine = "unknown"
+				if robot == "pr2":
+					robot_machine = self.pr2_machine
+				elif robot == "roman":
+					robot_machine = self.roman_machine
+				else:
+					rospy.loginfo("Error parsing generator_commander_servers, unknown robot name")
+
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + server_root  , "server"))
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + server_root, "server", robot_machine))
 
 		# next add the list of default advertisements from publsihers
 		for gateway in self.gateway_list:
@@ -131,10 +145,10 @@ class MultimasterConfigGenerator:
 				prefix = self.robot_dict[gateway]
 			publisher_topics = rospy.get_param("generator_"+gateway+"_publishers")
 			for publisher_topic in publisher_topics:
-				self.defaultAdvertisements[gateway].append(prefix + publisher_topic)
+				self.defaultAdvertisements[gateway].append(AdStruct(prefix + publisher_topic, "publisher"))
 
 
-		# add the list of default pulls from publishers
+		# add the list of default pulls from subscribers
 		for gateway in self.gateway_list:
 			for other_gateway in self.gateway_list:
 				if other_gateway!= gateway:
@@ -143,8 +157,7 @@ class MultimasterConfigGenerator:
 						prefix = self.robot_dict[other_gateway]
 					topics = rospy.get_param("generator_"+other_gateway+"_publishers")
 					for topic in topics:
-						self.defaultPullsTopics[gateway].append(prefix + topic)
-						self.defaultPullsGateway[gateway].append(other_gateway)
+						self.defaultPulls[gateway].append(PullStruct(prefix + topic, "subscriber", other_gateway))
 
 		# Write the accumulated advertisements and pull to config file
 		for gateway in self.gateway_list:
