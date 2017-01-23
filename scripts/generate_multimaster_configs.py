@@ -135,8 +135,8 @@ class MultimasterConfigGenerator:
 				else:
 					rospy.loginfo("Error parsing generator_commander_servers, unknown robot name")
 
-				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + server_root  , "server"))
-				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + server_root, "server", robot_machine))
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + server_root  , "service"))
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + server_root, "service", robot_machine))
 
 		# next add the list of default advertisements from publsihers
 		for gateway in self.gateway_list:

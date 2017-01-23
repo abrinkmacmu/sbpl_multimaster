@@ -36,13 +36,13 @@ default_pulls:
      rule:
        name: /roman/tf_lookup_server
        node: None
-       type: server
+       type: service
 
    - gateway: pluto_gateway
      rule:
        name: /pr2/tf_lookup_server
        node: None
-       type: server
+       type: service
 
    - gateway: tatooine_gateway
      rule:

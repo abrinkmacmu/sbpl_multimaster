@@ -5,7 +5,7 @@ network_interface: eth0
 default_advertisements:
    - name: /roman/tf_lookup_server
      node: None
-     type: server
+     type: service
    - name: /roman/tatooine_talker
      node: None
      type: publisher
