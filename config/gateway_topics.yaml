@@ -4,14 +4,14 @@
 generator_gateway_list: 
  - dagobah
  - tatooine
- - alan1
+ - pluto
  - yavin
 
 # the demonstration commander machine
 generator_commander: dagobah
 
 # pr2 machine name
-generator_pr2: alan1
+generator_pr2: pluto
 
 # roman machine name
 generator_roman: tatooine # TODO set for roman machine
@@ -41,7 +41,7 @@ generator_commander_servers:
 
 #list out all published topics you want shared on the network
 # TODO generate the remapping launch files from the publisher list
-generator_alan1_publishers:
+generator_pluto_publishers:
   - alan1_talker
   - wide_stereo/right/image_raw
   - joint_states

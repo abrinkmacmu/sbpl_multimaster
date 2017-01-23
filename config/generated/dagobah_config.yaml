@@ -14,19 +14,19 @@ default_advertisements:
      type: publisher
 
 default_pulls:
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/torso_controller/position_joint_action/status
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/torso_controller/position_joint_action/result
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/torso_controller/position_joint_action/feedback
        node: None
@@ -38,7 +38,7 @@ default_pulls:
        node: None
        type: server
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/tf_lookup_server
        node: None
@@ -50,31 +50,31 @@ default_pulls:
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/alan1_talker
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/wide_stereo/right/image_raw
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/joint_states
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/base_scan
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/tilt_scan
        node: None

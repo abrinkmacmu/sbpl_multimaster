@@ -20,31 +20,31 @@ default_pulls:
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/alan1_talker
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/wide_stereo/right/image_raw
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/joint_states
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/base_scan
        node: None
        type: subscriber
 
-   - gateway: alan1_gateway
+   - gateway: pluto_gateway
      rule:
        name: /pr2/tilt_scan
        node: None
