@@ -6,6 +6,21 @@ default_advertisements:
    - name: /torso_controller/position_joint_action
      node: None
      type: action_server
+   - name: /tf2_buffer_server
+     node: None
+     type: action_server
+   - name: /r_gripper_controller/gripper_action
+     node: None
+     type: action_server
+   - name: /l_gripper_controller/gripper_action
+     node: None
+     type: action_server
+   - name: /head_traj_controller/point_head_action
+     node: None
+     type: action_server
+   - name: /move_base
+     node: None
+     type: action_server
    - name: /pr2/tf_lookup_server
      node: None
      type: service
@@ -29,6 +44,36 @@ default_pulls:
    - gateway: dagobah_gateway
      rule:
        name: /torso_controller/position_joint_action
+       node: None
+       type: action_client
+
+   - gateway: dagobah_gateway
+     rule:
+       name: /tf2_buffer_server
+       node: None
+       type: action_client
+
+   - gateway: dagobah_gateway
+     rule:
+       name: /r_gripper_controller/gripper_action
+       node: None
+       type: action_client
+
+   - gateway: dagobah_gateway
+     rule:
+       name: /l_gripper_controller/gripper_action
+       node: None
+       type: action_client
+
+   - gateway: dagobah_gateway
+     rule:
+       name: /head_traj_controller/point_head_action
+       node: None
+       type: action_client
+
+   - gateway: dagobah_gateway
+     rule:
+       name: /move_base
        node: None
        type: action_client
 
