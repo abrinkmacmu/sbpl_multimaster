@@ -81,14 +81,11 @@ class MultimasterConfigGenerator:
 			##topic_name = topic_unprefixed[0:topic_unprefixed.find('/')] #not unique enough
 			topic_name = topic_unprefixed.replace('/','_')
 			file.write("  <node name=\""+topic_name+"_relay_node\" pkg=\"topic_tools\" type=\"relay\" ")
-<<<<<<< HEAD
 			file.write("args=\""+topic_unprefixed+" "+topic +"\" />\n\n")
-=======
-			file.write("args=\""+topic_unprefixed+" "+topic +"\" >\n")
 			# lazy is bad... subscribers are NOT counted over rocon
 			#file.write("    <param name=\"lazy\" value=\"true\"/>\n")
 			file.write("  </node>\n\n")
->>>>>>> 0de30d56b6f8382a9ae58e4933c72511bed89524
+
 
 
 	def writeSubscribedRemaps(self, file, gateway, robot_prefix):
@@ -99,16 +96,12 @@ class MultimasterConfigGenerator:
 				##topic_name = topic_unprefixed[0:topic_unprefixed.find('/')] #not unique enough
 				topic_name = topic_unprefixed.replace('/','_')
 				file.write("  <node name=\""+topic_name+"_relay_node\" pkg=\"topic_tools\" type=\"relay\" ")
-<<<<<<< HEAD
 				file.write("args=\""+topic+" "+topic_unprefixed +" \" />\n\n")
 
 
-=======
-				file.write("args=\""+topic+" "+topic_unprefixed +"\" >\n")
 				# lazy is bad... subscribers are NOT counted over rocon
 				# file.write("    <param name=\"lazy\" value=\"true\"/>\n")
 				file.write("  </node>\n\n")
->>>>>>> 0de30d56b6f8382a9ae58e4933c72511bed89524
 
 	def run(self):
 		# first generate the list of default advertisements from actions
