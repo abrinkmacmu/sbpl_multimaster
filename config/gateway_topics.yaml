@@ -33,6 +33,9 @@ generator_commander_action_clients:
     - l_gripper_controller/gripper_action
     - head_traj_controller/point_head_action
     - move_base
+    - pr2_move_base
+    - pr2_move_base_local
+    - move_base_local
 
 
 #list out the servers the commander needs
@@ -53,6 +56,7 @@ generator_alan1_publishers:
   - joint_states
   - base_scan
   - tilt_scan
+  - move_base_simple
 
 generator_dagobah_publishers:
   - dagobah_talker

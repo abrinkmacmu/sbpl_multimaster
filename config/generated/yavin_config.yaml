@@ -56,3 +56,9 @@ default_pulls:
        node: None
        type: subscriber
 
+   - gateway: alan1_gateway
+     rule:
+       name: /move_base_simple
+       node: None
+       type: subscriber
+

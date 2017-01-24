@@ -6,6 +6,30 @@ default_advertisements:
    - name: /torso_controller/position_joint_action
      node: None
      type: action_client
+   - name: /tf2_buffer_server
+     node: None
+     type: action_client
+   - name: /r_gripper_controller/gripper_action
+     node: None
+     type: action_client
+   - name: /l_gripper_controller/gripper_action
+     node: None
+     type: action_client
+   - name: /head_traj_controller/point_head_action
+     node: None
+     type: action_client
+   - name: /move_base
+     node: None
+     type: action_client
+   - name: /pr2_move_base
+     node: None
+     type: action_client
+   - name: /pr2_move_base_local
+     node: None
+     type: action_client
+   - name: /move_base_local
+     node: None
+     type: action_client
    - name: /dagobah_talker
      node: None
      type: publisher
@@ -14,6 +38,54 @@ default_pulls:
    - gateway: alan1_gateway
      rule:
        name: /torso_controller/position_joint_action
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /tf2_buffer_server
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /r_gripper_controller/gripper_action
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /l_gripper_controller/gripper_action
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /head_traj_controller/point_head_action
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /move_base
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2_move_base
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /pr2_move_base_local
+       node: None
+       type: action_server
+
+   - gateway: alan1_gateway
+     rule:
+       name: /move_base_local
        node: None
        type: action_server
 
@@ -68,6 +140,12 @@ default_pulls:
    - gateway: alan1_gateway
      rule:
        name: /tilt_scan
+       node: None
+       type: subscriber
+
+   - gateway: alan1_gateway
+     rule:
+       name: /move_base_simple
        node: None
        type: subscriber
 
