@@ -52,8 +52,6 @@ class MultimasterConfigGenerator:
 		file.write("name: "+gateway+"_gateway\n")
 		if gateway == "alan1":
 			file.write("network_interface: lan0\n")
-		elif gateway =="pluto":
-			file.write("network_interface: eth4\n")
 		else:
 			file.write("network_interface: eth0\n")
 
@@ -111,11 +109,19 @@ class MultimasterConfigGenerator:
 				## Add new robots here
 				
 
-				self.defaultAdvertisements[robot_machine].append(AdStruct(action_root , "action_server"))
-				self.defaultPulls[robot_machine].append(PullStruct(action_root, "action_client", self.commander_machine))
-		
-				self.defaultAdvertisements[self.commander_machine].append(AdStruct(action_root, "action_client"))
-				self.defaultPulls[self.commander_machine].append(PullStruct(action_root, "action_server", robot_machine))
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + action_root + "/status"  , "publisher"))
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + action_root + "/result"  , "publisher"))
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + action_root + "/feedback", "publisher"))
+
+				self.defaultPulls[robot_machine].append(PullStruct(robot+"/" + action_root + "/goal"  , "subscriber", self.commander_machine))
+				self.defaultPulls[robot_machine].append(PullStruct(robot+"/" + action_root + "/cancel", "subscriber", self.commander_machine))
+
+				self.defaultAdvertisements[self.commander_machine].append(AdStruct(robot+"/" + action_root + "/goal"  , "publisher"))
+				self.defaultAdvertisements[self.commander_machine].append(AdStruct(robot+"/" + action_root + "/cancel", "publisher"))
+
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + action_root + "/status"  , "subscriber", robot_machine))
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + action_root + "/result"  , "subscriber", robot_machine))
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + action_root + "/feedback", "subscriber", robot_machine))
 
 
 		# next get the servers
@@ -129,8 +135,8 @@ class MultimasterConfigGenerator:
 				else:
 					rospy.loginfo("Error parsing generator_commander_servers, unknown robot name")
 
-				self.defaultAdvertisements[robot_machine].append(AdStruct(server_root  , "service"))
-				self.defaultPulls[self.commander_machine].append(PullStruct(server_root, "service", robot_machine))
+				self.defaultAdvertisements[robot_machine].append(AdStruct(robot+"/" + server_root  , "service"))
+				self.defaultPulls[self.commander_machine].append(PullStruct(robot+"/" + server_root, "service", robot_machine))
 
 		# next add the list of default advertisements from publsihers
 		for gateway in self.gateway_list:
@@ -139,7 +145,7 @@ class MultimasterConfigGenerator:
 				prefix = self.robot_dict[gateway]
 			publisher_topics = rospy.get_param("generator_"+gateway+"_publishers")
 			for publisher_topic in publisher_topics:
-				self.defaultAdvertisements[gateway].append(AdStruct(publisher_topic, "publisher"))
+				self.defaultAdvertisements[gateway].append(AdStruct(prefix + publisher_topic, "publisher"))
 
 
 		# add the list of default pulls from subscribers
@@ -151,7 +157,7 @@ class MultimasterConfigGenerator:
 						prefix = self.robot_dict[other_gateway]
 					topics = rospy.get_param("generator_"+other_gateway+"_publishers")
 					for topic in topics:
-						self.defaultPulls[gateway].append(PullStruct(topic, "subscriber", other_gateway))
+						self.defaultPulls[gateway].append(PullStruct(prefix + topic, "subscriber", other_gateway))
 
 		# Write the accumulated advertisements and pull to config file
 		for gateway in self.gateway_list:
@@ -168,8 +174,8 @@ class MultimasterConfigGenerator:
 		file = open(self.package_path + "/launch/generated/" + gateway+"_remappings.launch", 'w')
 		file.write("<launch>\n")
 
-		#self.writePublishedRemaps(file, gateway)
-		#self.writeSubscribedRemaps(file, gateway, robot_prefix)
+		self.writePublishedRemaps(file, gateway)
+		self.writeSubscribedRemaps(file, gateway, robot_prefix)
 
 		file.write("</launch>")
 		file.close()

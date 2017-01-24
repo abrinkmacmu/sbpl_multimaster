@@ -5,13 +5,14 @@ generator_gateway_list:
  - dagobah
  - tatooine
  - pluto
+ - alan1
  - yavin
 
 # the demonstration commander machine
 generator_commander: dagobah
 
 # pr2 machine name
-generator_pr2: pluto
+generator_pr2: alan1
 
 # roman machine name
 generator_roman: tatooine # TODO set for roman machine
@@ -33,15 +34,15 @@ generator_commander_action_clients:
 #  This will add the server to both the robot and commander configs
 generator_commander_servers:
   pr2:
-    - tf_lookup_server
+    - pr2/tf_lookup_server
   roman:
-    - tf_lookup_server
+    - roman/tf_lookup_server
 
 
 
 #list out all published topics you want shared on the network
 # TODO generate the remapping launch files from the publisher list
-generator_pluto_publishers:
+generator_alan1_publishers:
   - alan1_talker
   - wide_stereo/right/image_raw
   - joint_states
@@ -56,3 +57,6 @@ generator_tatooine_publishers:
 
 generator_yavin_publishers:
   - yavin_talker
+
+generator_pluto_publishers:
+  - pluto_talker

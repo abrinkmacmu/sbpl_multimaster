@@ -3,46 +3,34 @@ firewall: false
 name: alan1_gateway
 network_interface: lan0
 default_advertisements:
-   - name: /pr2/torso_controller/position_joint_action/status
+   - name: /torso_controller/position_joint_action
      node: None
-     type: publisher
-   - name: /pr2/torso_controller/position_joint_action/result
-     node: None
-     type: publisher
-   - name: /pr2/torso_controller/position_joint_action/feedback
-     node: None
-     type: publisher
+     type: action_server
    - name: /pr2/tf_lookup_server
      node: None
-     type: server
-   - name: /pr2/alan1_talker
+     type: service
+   - name: /alan1_talker
      node: None
      type: publisher
-   - name: /pr2/wide_stereo/right/image_raw
+   - name: /wide_stereo/right/image_raw
      node: None
      type: publisher
-   - name: /pr2/joint_states
+   - name: /joint_states
      node: None
      type: publisher
-   - name: /pr2/base_scan
+   - name: /base_scan
      node: None
      type: publisher
-   - name: /pr2/tilt_scan
+   - name: /tilt_scan
      node: None
      type: publisher
 
 default_pulls:
    - gateway: dagobah_gateway
      rule:
-       name: /pr2/torso_controller/position_joint_action/goal
+       name: /torso_controller/position_joint_action
        node: None
-       type: subscriber
-
-   - gateway: dagobah_gateway
-     rule:
-       name: /pr2/torso_controller/position_joint_action/cancel
-       node: None
-       type: subscriber
+       type: action_client
 
    - gateway: dagobah_gateway
      rule:
@@ -52,7 +40,13 @@ default_pulls:
 
    - gateway: tatooine_gateway
      rule:
-       name: /roman/tatooine_talker
+       name: /tatooine_talker
+       node: None
+       type: subscriber
+
+   - gateway: pluto_gateway
+     rule:
+       name: /pluto_talker
        node: None
        type: subscriber
 
