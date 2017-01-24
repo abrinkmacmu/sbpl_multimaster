@@ -28,6 +28,11 @@ generator_roman: tatooine # TODO set for roman machine
 generator_commander_action_clients:
   pr2:
     - torso_controller/position_joint_action
+    - tf2_buffer_server
+    - r_gripper_controller/gripper_action
+    - l_gripper_controller/gripper_action
+    - head_traj_controller/point_head_action
+    - move_base
 
 
 #list out the servers the commander needs

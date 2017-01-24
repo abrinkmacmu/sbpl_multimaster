@@ -165,7 +165,7 @@ class MultimasterConfigGenerator:
 		# write the remapping topic to the generated launch file
 		gateway = self.pr2_machine
 		robot_prefix = "pr2"
-		file = open(self.package_path + "/launch/generated/" + gateway+"_remappings.launch", 'w')
+		file = open(self.package_path + "/launch/generated/" + gateway+"_remappings.xml", 'w')
 		file.write("<launch>\n")
 
 		#self.writePublishedRemaps(file, gateway)
