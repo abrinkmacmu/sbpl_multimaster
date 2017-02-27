@@ -1,9 +1,12 @@
 watch_loop_period: 1
 firewall: false
 name: alan1_gateway
-network_interface: lan0
+network_interface: lan0 
 default_advertisements:
    - name: /torso_controller/position_joint_action
+     node: None
+     type: action_server
+   - name: /rocon_move_arm
      node: None
      type: action_server
    - name: /tf2_buffer_server
@@ -56,6 +59,12 @@ default_pulls:
    - gateway: dagobah_gateway
      rule:
        name: /torso_controller/position_joint_action
+       node: None
+       type: action_client
+
+   - gateway: dagobah_gateway
+     rule:
+       name: /rocon_move_arm
        node: None
        type: action_client
 
