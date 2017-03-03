@@ -4,7 +4,7 @@ import rospy
 import rospkg
 from collections import defaultdict
 from collections import namedtuple
-import IPython
+# import IPython
 
 AdStruct = namedtuple("AdStruct", "topic topic_type")
 PullStruct = namedtuple("PullStruct", "topic topic_type pull_gateway")

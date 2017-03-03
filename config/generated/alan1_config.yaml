@@ -131,3 +131,9 @@ default_pulls:
        node: None
        type: subscriber
 
+   - gateway: kimsk_gateway
+     rule:
+       name: /kimsk_talker
+       node: None
+       type: subscriber
+
