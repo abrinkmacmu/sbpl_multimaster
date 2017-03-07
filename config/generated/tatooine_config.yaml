@@ -3,9 +3,6 @@ firewall: false
 name: tatooine_gateway
 network_interface: eth0
 default_advertisements:
-   - name: /roman/tf_lookup_server
-     node: None
-     type: service
    - name: /tatooine_talker
      node: None
      type: publisher

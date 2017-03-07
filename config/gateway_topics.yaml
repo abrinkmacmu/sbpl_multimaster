@@ -10,13 +10,13 @@ generator_gateway_list:
  - kimsk
 
 # the demonstration commander machine
-generator_commander: dagobah
+generator_commander: alan1
 
 # pr2 machine name
 generator_pr2: alan1
 
 # roman machine name
-generator_roman: tatooine # TODO set for roman machine
+generator_roman: dagobah
 
 #list out all action clients the commander needs 
 #  5 topics will be generated per the actionlib protocol
@@ -37,6 +37,10 @@ generator_commander_action_clients:
     - pr2_move_base
     - pr2_move_base_local
     - move_base_local
+  roman:
+    - roman_pick_action
+    - roman_move_arm
+    - roman_grasp_action
 
 
 #list out the servers the commander needs

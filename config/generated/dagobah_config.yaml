@@ -3,33 +3,18 @@ firewall: false
 name: dagobah_gateway
 network_interface: eth0
 default_advertisements:
-   - name: /torso_controller/position_joint_action
+   - name: /roman_pick_action
      node: None
-     type: action_client
-   - name: /tf2_buffer_server
+     type: action_server
+   - name: /roman_move_arm
      node: None
-     type: action_client
-   - name: /r_gripper_controller/gripper_action
+     type: action_server
+   - name: /roman_grasp_action
      node: None
-     type: action_client
-   - name: /l_gripper_controller/gripper_action
+     type: action_server
+   - name: /roman/tf_lookup_server
      node: None
-     type: action_client
-   - name: /head_traj_controller/point_head_action
-     node: None
-     type: action_client
-   - name: /move_base
-     node: None
-     type: action_client
-   - name: /pr2_move_base
-     node: None
-     type: action_client
-   - name: /pr2_move_base_local
-     node: None
-     type: action_client
-   - name: /move_base_local
-     node: None
-     type: action_client
+     type: service
    - name: /dagobah_talker
      node: None
      type: publisher
@@ -37,69 +22,21 @@ default_advertisements:
 default_pulls:
    - gateway: alan1_gateway
      rule:
-       name: /torso_controller/position_joint_action
+       name: /roman_pick_action
        node: None
-       type: action_server
+       type: action_client
 
    - gateway: alan1_gateway
      rule:
-       name: /tf2_buffer_server
+       name: /roman_move_arm
        node: None
-       type: action_server
+       type: action_client
 
    - gateway: alan1_gateway
      rule:
-       name: /r_gripper_controller/gripper_action
+       name: /roman_grasp_action
        node: None
-       type: action_server
-
-   - gateway: alan1_gateway
-     rule:
-       name: /l_gripper_controller/gripper_action
-       node: None
-       type: action_server
-
-   - gateway: alan1_gateway
-     rule:
-       name: /head_traj_controller/point_head_action
-       node: None
-       type: action_server
-
-   - gateway: alan1_gateway
-     rule:
-       name: /move_base
-       node: None
-       type: action_server
-
-   - gateway: alan1_gateway
-     rule:
-       name: /pr2_move_base
-       node: None
-       type: action_server
-
-   - gateway: alan1_gateway
-     rule:
-       name: /pr2_move_base_local
-       node: None
-       type: action_server
-
-   - gateway: alan1_gateway
-     rule:
-       name: /move_base_local
-       node: None
-       type: action_server
-
-   - gateway: tatooine_gateway
-     rule:
-       name: /roman/tf_lookup_server
-       node: None
-       type: service
-
-   - gateway: alan1_gateway
-     rule:
-       name: /pr2/tf_lookup_server
-       node: None
-       type: service
+       type: action_client
 
    - gateway: tatooine_gateway
      rule:
