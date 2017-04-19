@@ -71,3 +71,8 @@ default_pulls:
        node: None
        type: subscriber
 
+   - gateway: dagobah_gateway
+     rule:
+       name: /state_machine
+       node: None
+       type: service
