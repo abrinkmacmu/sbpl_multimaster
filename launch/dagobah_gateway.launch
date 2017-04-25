@@ -4,7 +4,7 @@
 
 	<!-- Only run the hub on machine Dagobah -->
 	<!-- The hub on Dagobah only should you run - Yoda -->
-	<!-- <include file="$(find sbpl_multimaster)/launch/sbpl_hub.launch" /> -->
+	<include file="$(find sbpl_multimaster)/launch/sbpl_hub.launch" />
 
 	<include file="$(find sbpl_multimaster)/launch/generic_gateway.xml">
 		<arg name="zeroconf" value="$(arg zeroconf)" />

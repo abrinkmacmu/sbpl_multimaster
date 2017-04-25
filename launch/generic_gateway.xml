@@ -16,9 +16,9 @@
 
 	<!-- this starts a generic 'hello world ###' talker to help debug network settings -->
 
-	<node pkg="roscpp_tutorials" type="talker" name="$(arg computer_name)_talker">
+	<!-- <node pkg="roscpp_tutorials" type="talker" name="$(arg computer_name)_talker">
 		<remap from="chatter" to="$(arg computer_name)_talker"/>
-	</node>
+	</node> -->
 
 </launch>
 
