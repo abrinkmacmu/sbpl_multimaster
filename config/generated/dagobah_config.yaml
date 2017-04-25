@@ -18,6 +18,9 @@ default_advertisements:
    - name: /dagobah_talker
      node: None
      type: publisher
+   - name: /state_machine
+     node: None
+     type: service
 
 default_pulls:
    - gateway: alan1_gateway
